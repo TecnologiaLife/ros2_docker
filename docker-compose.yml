@@ -1,0 +1,16 @@
+services:
+  hb1_gpt_docker:
+    build:
+      context: .
+
+      dockerfile: Dockerfile
+    container_name: hb1_gpt_docker
+    stdin_open: true
+    tty: true
+    working_dir: /home/ros2_ws
+
+    volumes:
+      - ./home:/home
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=unix$DISPLAY
