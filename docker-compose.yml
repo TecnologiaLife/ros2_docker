@@ -1,10 +1,10 @@
 services:
-  hb1_gpt_docker:
+  ros2_docker:
     build:
       context: .
 
       dockerfile: Dockerfile
-    container_name: hb1_gpt_docker
+    container_name: ros2_docker
     stdin_open: true
     tty: true
     working_dir: /home/ros2_ws

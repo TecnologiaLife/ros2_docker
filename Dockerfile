@@ -1,5 +1,5 @@
 # Ubuntu 24.04 ベースのROS 2 jazzyイメージ
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # 環境変数の設定
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,9 +21,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get install -y python3-pip
 
-# 使用するPythonライブラリのインストール
-RUN pip install \
-    setuptools==68
 
 
 CMD ["/bin/bash"]
