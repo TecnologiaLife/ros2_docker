@@ -19,8 +19,21 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 
-RUN apt-get install -y python3-pip
+# Python3.12用のPPAを追加
+RUN apt-get install software-properties-common -y
+RUN add-apt-repository ppa:deadsnakes/ppa -y
+RUN apt-get install python3.12 -y
+RUN apt-get install python3-pip -y
+RUN apt-get install -y libgl1-mesa-dev
+RUN apt-get -y clean && rm -rf /var/lib/apt/lists/*
 
+# pythonコマンドの参照先をPython3.12に変更
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
+
+
+# 使用するPythonライブラリのインストール(DockerだしPEP668は無視する)
+RUN pip install --break-system-packages \
+    setuptools
 
 
 CMD ["/bin/bash"]
@@ -36,6 +49,7 @@ RUN apt-get update && apt-get install -y \
     python3-rosdep \
     python3-argcomplete \
     && apt-get clean
+
 
 # rosdep の初期化
 RUN rosdep init && rosdep update
