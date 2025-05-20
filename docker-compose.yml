@@ -12,5 +12,10 @@ services:
     volumes:
       - ./home:/home
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority/:/root/.Xauthority
+      - "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native"
     environment:
-      - DISPLAY=unix$DISPLAY
+      - DISPLAY=unix${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - LIBGL_ALWAYS_SOFTWARE=1
