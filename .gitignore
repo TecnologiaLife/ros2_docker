@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.vscode/
+home/ros2_ws/install/*
+home/ros2_ws/build/*
+home/ros2_ws/log/*
